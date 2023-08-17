@@ -1,8 +1,9 @@
 pipeline {
       agent any
       environment {
-           CHKP_CLOUDGUARD_ID = credentials("db300929-1ccc-4168-8bea-2ccd0b43d579")
-           CHKP_CLOUDGUARD_SECRET = credentials("sc8yy4imsmcyj5re3adppkop")
+           CHKP_CLOUDGUARD_ID = "db300929-1ccc-4168-8bea-2ccd0b43d579"
+           CHKP_CLOUDGUARD_SECRET = "sc8yy4imsmcyj5re3adppkop"
+           SHIFTLEFT_REGION = "eu"
         }
         
   stages {
