@@ -6,12 +6,19 @@ pipeline {
         CHKP_CLOUDGUARD_ID = credentials('chkp-cloudguard-id')
         CHKP_CLOUDGUARD_SECRET = credentials('chkp-cloudguard-secret')
         SHIFTLEFT_REGION = "eu1"
+        SPECTRAL_DSN = credentials('spectral-dsn')
     }
 
     stages {
         stage('Clone Github repository') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage('install Spectral') {
+            steps {
+                sh "curl -L 'https://spectral-eu.checkpoint.com/latest/x/sh?dsn=$SPECTRAL_DSN' | sh"
             }
         }
 
@@ -55,7 +62,7 @@ pipeline {
                         sh 'chmod +x shiftleft'
                         sh './shiftleft image-scan -t 180 -i webapp.tar'
                     } catch (Exception e) {
-                        echo "ShiftLeft Terraform config policy scan failed."
+                        echo "ShiftLeft docker Image scan failed."
                     }
                 }
             }
