@@ -22,15 +22,9 @@ pipeline {
             }
         }
 
-        stage('Spectral Scan for Secrets') {
+        stage('Spectral Scan for Secrets,Misconfiguration and IaC') {
             steps {
-                sh "$HOME/.spectral/spectral scan --ok  --include-tags base,audit"
-            }
-        }
-
-        stage('Spectral Scan for IaC Misconfigurations') {
-            steps {
-                sh "$HOME/.spectral/spectral scan --ok --engines iac "
+                sh "$HOME/.spectral/spectral scan --ok --engines secrets,iac --include-tags base,audit,iac"
             }
         }
 
