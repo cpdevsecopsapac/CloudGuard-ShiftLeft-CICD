@@ -31,7 +31,7 @@ pipeline {
                 sh 'chmod +x shiftleft' 
 
 //                sh './shiftleft code-scan -s .'
-           
+                             
                } catch (Exception e) {
     
                  echo "Request for Approval"  
@@ -67,7 +67,8 @@ pipeline {
                 script {      
               try {
          
-                    sh './shiftleft image-scan -t 180 -i webapp.tar'
+                    sh './shiftleft image-scan -t 180 -i webapp.tar -r -2002 -e d29d3391-5284-4a70-9d9b-1a5daf401b5d'
+           
                    } catch (Exception e) {
     
                  echo "Request for Approval"  
