@@ -24,7 +24,7 @@ pipeline {
 
         stage('Spectral Scan for Secrets,Misconfiguration and IaC') {
             steps {
-                sh "$HOME/.spectral/spectral scan --ok --engines secrets,iac --include-tags base,audit,iac"
+                sh "$HOME/.spectral/spectral scan --engines secrets,iac,oss --include-tags base,audit,iac --ok"
             }
         }
 
