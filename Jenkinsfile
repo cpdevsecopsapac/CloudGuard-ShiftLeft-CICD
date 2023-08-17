@@ -22,16 +22,9 @@ pipeline {
             }
         }
 
-        stage('ShiftLeft Code Scan') {
+        stage('Spectral Scan for Secrets and Misconfigurations') {
             steps {
-                script {
-                    try {
-                        sh 'chmod +x shiftleft'
-                        sh './shiftleft code-scan -s .'
-                    } catch (Exception e) {
-                        echo "ShiftLeft code scan failed."
-                    }
-                }
+                sh "$HOME/.spectral/spectral scan --ok  --include-tags base,audit"
             }
         }
 
