@@ -35,7 +35,7 @@ pipeline {
             }
         }
 
-        stage('ShiftLeft Container Image Scan') {
+        stage('ShiftLeft Container Image Scan Online') {
             steps {
                 script {
                     try {
@@ -48,12 +48,12 @@ pipeline {
             }
         }
 
-        stage('Terraform config policy Scan') {
+        stage('Shiftleft Container Image Scan Offline') {
             steps {
                 script {
                     try {
                         sh 'chmod +x shiftleft'
-                        sh './shiftleft iac-assessment -l S3Bucket should have encryption.serverSideEncryptionRules -p ./terraform'
+                        sh './shiftleft image-scan -t 180 -i webapp.tar'
                     } catch (Exception e) {
                         echo "ShiftLeft Terraform config policy scan failed."
                     }
