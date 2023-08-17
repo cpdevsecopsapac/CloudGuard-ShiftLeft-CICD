@@ -19,6 +19,7 @@ pipeline {
             steps {
                 script {
                     try {
+                        sh 'chmod +x shiftleft'
                         sh './shiftleft code-scan -s .'
                     } catch (Exception e) {
                         echo "ShiftLeft code scan failed."
@@ -38,6 +39,7 @@ pipeline {
             steps {
                 script {
                     try {
+                        sh 'chmod +x shiftleft'
                         sh './shiftleft image-scan -t 180 -i webapp.tar -r -2002 -e 4b89d765-1dfd-4c19-bf26-a34374142d42'
                     } catch (Exception e) {
                         echo "ShiftLeft docker image scan failed."
@@ -50,6 +52,7 @@ pipeline {
             steps {
                 script {
                     try {
+                        sh 'chmod +x shiftleft'
                         sh './shiftleft iac-assessment -l S3Bucket should have encryption.serverSideEncryptionRules -p ./terraform'
                     } catch (Exception e) {
                         echo "ShiftLeft Terraform config policy scan failed."
@@ -59,4 +62,3 @@ pipeline {
         }
     }
 }
-
